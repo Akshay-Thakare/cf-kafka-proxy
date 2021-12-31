@@ -1,0 +1,19 @@
+cf:
+  api: CF api url
+  user: CF email
+  pass: CF password (otp if required for 2FA is to be set as a param in run.sh)
+  org: CF orgnaization
+  space: CF space
+  app: ssh enabled app in above space which will be used for tunnelling
+service_key:
+  kafka: >
+    {
+      "username": "",
+      "password": "",
+      "cluster": {
+        "brokers": "10.254.54.135:9093,..."
+      },
+      "urls": {
+        "token": "https://kafka-service-oauth.cf.eu10.hana.ondemand.com/v1/.../token"
+      }
+    }
