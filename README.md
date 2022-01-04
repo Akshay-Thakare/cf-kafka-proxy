@@ -11,7 +11,7 @@ Docker image can be found [here](https://hub.docker.com/r/register9091/cf-kafka-
 ### For future project contributors
 
 The CF Kafka Proxy project is an extension of [kafka-proxy](https://github.com/grepplabs/kafka-proxy) which enables users to proxy CF kafka service requests to their local machines. \
-Additionally, a [kafka-ui](https://github.com/provectus/kafka-ui) to easily manage and test the service.
+Additionally, a [kafka-ui](https://github.com/provectus/kafka-ui) is included to easily manage and test the service.
 
 The entire project is contained in `main.py` file and the run script is in `run.sh` file. \
 The `config.yml` file which contains all the parameters needed to run the project, users are expected to populate this file with appropriate credentials.
