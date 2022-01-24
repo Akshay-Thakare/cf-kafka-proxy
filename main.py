@@ -89,7 +89,7 @@ class KafKaProxy:
 
         server_mapping = ''
         for id, broker in enumerate(self.env['kafka']['brokers']):
-            server_mapping += f' --bootstrap-server-mapping "{broker["host_port"]},0.0.0.0:{30000+id}" '
+            server_mapping += f' --bootstrap-server-mapping "{broker["host_port"]},localhost:{30000+id}" '
 
         cmd = f'kafka-proxy server {server_mapping}' \
               f' --sasl-username "{self.env["kafka"]["user"]}" ' \
