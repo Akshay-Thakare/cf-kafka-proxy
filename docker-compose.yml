@@ -2,7 +2,7 @@ version: "3.9"
 services:
   kafka-proxy:
     container_name: kafka-proxy
-    image: register9091/cf-kafka-proxy:1.0.0
+    image: register9091/cf-kafka-proxy:1.0.1
     ports:
       - "30000-30005:30000-30005"
     cap_add:
