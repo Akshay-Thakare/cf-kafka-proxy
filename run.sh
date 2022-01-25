@@ -12,4 +12,5 @@ poetry run python main.py &
 
 # start kafka management ui
 export KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=localhost:30000
+export SERVER_PORT=8081
 java -jar kafka-ui-api-0.3.1.jar
