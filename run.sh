@@ -1,6 +1,7 @@
 
 # if CF is protected with 2FA (SSO login not supported by script)
 export CF_OTP=445644
+export CF_PASSCODE=jK87kBF8gg
 
 # Kill old processes
 pkill -f cf

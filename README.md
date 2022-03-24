@@ -36,7 +36,8 @@ NOTE: Authentication is configured in the proxy server i.e. clients need not aut
 1. Open folder in remote container (in vsCode)
 2. Modify config.yml file with appropriate details
 3. (optional) Add OTP to `run.sh` file OR set it as an env variable
-4. Execute `run.sh` script
+4. (optional) Add CF PASSCODE to `run.sh` file OR set it as an env variable
+5. Execute `run.sh` script
 
 Kafka ports will be available on localhost at ports 30000 up to 30005 (based on number of brokers in cluster). 
 If you cluster has more ports to be exposed you need to add the same to `.devcontainer/devcontainer.json` > `forwardPorts` section.

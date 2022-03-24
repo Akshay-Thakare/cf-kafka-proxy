@@ -15,7 +15,14 @@ class KafKaProxy:
         with open('/config/config.yml', 'r') as fp:
             self.env = yaml.safe_load(fp)
             self.env['service_key']['kafka'] = json.loads(self.env['service_key']['kafka'])
-            self.env['cf']['otp'] = os.getenv('CF_OTP')
+            if os.environ.get('CF_OTP') is not None:
+                self.env['cf']['otp'] = os.environ['CF_OTP']
+            else:
+                self.env['cf']['otp'] = None
+            if os.environ.get('CF_PASSCODE') is not None:
+                self.env['cf']['passcode'] = os.environ['CF_PASSCODE']
+            else:
+                self.env['cf']['passcode'] = None
 
         self.parse_kafka_service()
         self.setup_vlan()
@@ -74,8 +81,12 @@ class KafKaProxy:
             Popen(cmd, shell=True).wait()
 
     def cf_login(self):
-        print('Logging in into CF')
-        cmd = f'cf login -a {self.env["cf"]["api"]} -o {self.env["cf"]["org"]} -s {self.env["cf"]["space"]} -u {self.env["cf"]["user"]} -p {self.env["cf"]["pass"]}{self.env["cf"]["otp"]}'
+        if self.env["cf"]["otp"] is not None and len(self.env["cf"]["otp"]) > 0:
+            print('Logging in into CF based on OTP')
+            cmd = f'cf login -a {self.env["cf"]["api"]} -o {self.env["cf"]["org"]} -s {self.env["cf"]["space"]} -u {self.env["cf"]["user"]} -p {self.env["cf"]["pass"]}{self.env["cf"]["otp"]}'
+        else:
+            print('Logging in into CF based on passcode')
+            cmd = f'cf login -a {self.env["cf"]["api"]} -o {self.env["cf"]["org"]} -s {self.env["cf"]["space"]} -u {self.env["cf"]["user"]} --sso-passcode {self.env["cf"]["passcode"]}'
         Popen(cmd, shell=True).wait()
 
     def setup_tunnels(self):
